@@ -5,6 +5,9 @@ export namespace firestore {
   export interface CollectionReference extends FirestoreWeb.CollectionReference { }
   export interface DocumentChange extends FirestoreWeb.DocumentChange { }
   export interface DocumentReference extends FirestoreWeb.DocumentReference { }
+  export interface UpdateData extends FirestoreWeb.UpdateData { }
+
+
   export interface DocumentSnapshot extends FirestoreWeb.DocumentSnapshot { }
   export interface GetOptions extends FirestoreWeb.GetOptions { }
   export interface GeoPoint extends FirestoreWeb.GeoPoint { }

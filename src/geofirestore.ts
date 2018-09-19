@@ -134,7 +134,7 @@ export class GeoFirestore {
         const location: firestore.GeoPoint | firestore.cloud.GeoPoint = documentToUpdate[locationKey];
         const geohash: string = encodeGeohash(location);
         // changed batch set to update
-        batch.update(ref, encodeGeoFireObject(location, geohash, documentToUpdate));
+        batch.update(ref, encodeGeoFireObject(location, geohash, documentToUpdate) as firestore.UpdateData);
       }
     });
     return batch.commit();
