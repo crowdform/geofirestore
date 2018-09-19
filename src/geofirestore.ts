@@ -111,7 +111,8 @@ export class GeoFirestore {
         const locationKey: string = findCoordinatesKey(document, customKey);
         const location: firestore.GeoPoint | firestore.cloud.GeoPoint = document[locationKey];
         const geohash: string = encodeGeohash(location);
-        return this._collectionRef.doc(keyOrDocuments).set(encodeGeoFireObject(location, geohash, document));
+        // chanegd set to update
+        return this._collectionRef.doc(keyOrDocuments).update(encodeGeoFireObject(location, geohash, document));
       }
     } else if (typeof keyOrDocuments === 'object') {
       if (typeof document !== 'undefined') {
@@ -132,7 +133,8 @@ export class GeoFirestore {
         const locationKey = findCoordinatesKey(documentToUpdate, customKey);
         const location: firestore.GeoPoint | firestore.cloud.GeoPoint = documentToUpdate[locationKey];
         const geohash: string = encodeGeohash(location);
-        batch.set(ref, encodeGeoFireObject(location, geohash, documentToUpdate), { merge: true });
+        // changed batch set to update
+        batch.update(ref, encodeGeoFireObject(location, geohash, documentToUpdate));
       }
     });
     return batch.commit();

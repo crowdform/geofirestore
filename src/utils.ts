@@ -148,9 +148,10 @@ export function validateGeoFirestoreObject(geoFirestoreObj: GeoFirestoreObj, fla
   error = (!validateGeohash(geoFirestoreObj.g, true)) ? 'invalid geohash on object' : null;
   error = (!validateLocation(geoFirestoreObj.l, true)) ? 'invalid location on object' : error;
 
-  if (!geoFirestoreObj || !('d' in geoFirestoreObj) || typeof geoFirestoreObj.d !== 'object') {
-    error = 'no valid document found';
-  }
+  // // remove validation of d
+  // if (!geoFirestoreObj || !('d' in geoFirestoreObj) || typeof geoFirestoreObj.d !== 'object') {
+  //   error = 'no valid document found';
+  // }
 
   if (error && !flag) {
     throw new Error('Invalid GeoFirestore object: ' + error);
@@ -480,7 +481,7 @@ export function geoFirestoreGetKey(snapshot: firestore.DocumentSnapshot | firest
  * Returns the key of a document that is a GeoPoint.
  *
  * @param document A GeoFirestore document.
- * @returns The key for the location field of a document. 
+ * @returns The key for the location field of a document.
  */
 export function findCoordinatesKey(document: any, customKey?: string): string {
   let error: string;

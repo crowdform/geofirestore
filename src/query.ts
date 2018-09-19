@@ -114,7 +114,7 @@ export class GeoFirestoreQuery {
    * entirely removed from GeoFire, both the location and distance passed to the callback will be null.
    *
    * 'key_moved' fires when a key which is already in this query moves to another location inside of it.
-   * 
+   *
    * 'key_modified' fires when a key which is already in this query and the document has changed, while the location has stayed the same.
    *
    * Returns a GeoCallbackRegistration which can be used to cancel the callback. You can add as many callbacks
@@ -244,7 +244,8 @@ export class GeoFirestoreQuery {
    */
   private _childAddedCallback(locationDataSnapshot: firestore.DocumentSnapshot | firestore.cloud.DocumentSnapshot): void {
     const data: GeoFirestoreObj = (locationDataSnapshot.exists) ? locationDataSnapshot.data() as GeoFirestoreObj : null;
-    const document: any = (data && validateGeoFirestoreObject(data)) ? data.d : null;
+    // return all data not just data.d
+    const document: any = (data && validateGeoFirestoreObject(data)) ? data : null;
     const location: firestore.GeoPoint | firestore.cloud.GeoPoint = (data && validateLocation(data.l)) ? data.l : null;
     this._updateLocation(geoFirestoreGetKey(locationDataSnapshot), location, document);
   }
